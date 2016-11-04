@@ -1188,10 +1188,6 @@ class GovTalk
 
             $gatewayResponse = (string)$httpResponse->getBody();
 
-            echo $this->fullRequestString;
-
-            echo $gatewayResponse;
-
 //    Remove old usage of cURL - rather use via Guzzle as this is mockable
 //            if (function_exists('curl_init')) {
 //                $curlHandle = curl_init($this->govTalkServer);
