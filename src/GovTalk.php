@@ -24,8 +24,6 @@ use Guzzle\Http\Client as HttpClient;
 class GovTalk
 {
 
-    const QUALIFIER_ACKNOWLEDGEMENT = 'acknowledgement';
-
     /* Server related variables. */
 
     /**
@@ -72,7 +70,7 @@ class GovTalk
      *
      * @var string
      */
-    private $additionalXsiSchemaLocation = null;
+    private $additionalXsiSchemaLocation = 'http://www.govtalk.gov.uk/documents/envelope-v2-0.xsd';
 
     /**
      * GovTalk test flag.  Default is 0, a real message.
@@ -80,6 +78,13 @@ class GovTalk
      * @var string
      */
     private $govTalkTest = '0';
+
+    /**
+     * GovTalk Envelope Version
+     *
+     * @var string
+     */
+    private $envelopeVersion = '2.0';
 
     /**
      * Body of the message to be sent.
@@ -413,7 +418,7 @@ class GovTalk
     public function getResponseQualifier()
     {
         if (isset($this->fullResponseObject)) {
-            return (string) $this->fullResponseObject->Header->MessageDetails->Qualifier;
+            return (string) $this->fullResponseObject->Header->MessageDetails->Qualifer;
         } else {
             return false;
         }
@@ -607,7 +612,7 @@ class GovTalk
             return false;
         }
     }
-    
+
     /**
      * Gets the current status of the test flag.
      *
@@ -689,7 +694,7 @@ class GovTalk
         $messageQualifier = strtolower($messageQualifier);
         switch ($messageQualifier) {
             case 'request':
-            case self::QUALIFIER_ACKNOWLEDGEMENT:
+            case 'acknowledgement':
             case 'reponse':
             case 'poll':
             case 'error':
@@ -731,6 +736,16 @@ class GovTalk
         } else {
             return false;
         }
+    }
+
+    /**
+     * Set envelope ID
+     *
+     * @param string $envelopeVersion The envelope ID to set.
+     */
+    public function setEnvelopeVersion($envelopeVersion)
+    {
+        $this->envelopeVersion = $envelopeVersion;
     }
 
     /**
@@ -1173,6 +1188,10 @@ class GovTalk
 
             $gatewayResponse = (string)$httpResponse->getBody();
 
+            echo $this->fullRequestString;
+
+            echo $gatewayResponse;
+
 //    Remove old usage of cURL - rather use via Guzzle as this is mockable
 //            if (function_exists('curl_init')) {
 //                $curlHandle = curl_init($this->govTalkServer);
@@ -1303,10 +1322,11 @@ class GovTalk
                 // Packaging...
                 $package->startElement('GovTalkMessage');
                 $xsiSchemaName = 'http://www.govtalk.gov.uk/CM/envelope';
-                $xsiSchemaLocation = $xsiSchemaName.' http://www.govtalk.gov.uk/documents/envelope-v2-0.xsd';
-                if ($this->additionalXsiSchemaLocation !== null) {
-                    $xsiSchemaLocation .= ' '.$this->additionalXsiSchemaLocation;
-                }
+
+//                if ($this->additionalXsiSchemaLocation !== null) {
+                    $xsiSchemaLocation = $this->additionalXsiSchemaLocation;
+//                }
+
                 $package->writeAttribute('xmlns', $xsiSchemaName);
                 $package->writeAttributeNS(
                     'xsi',
@@ -1314,7 +1334,7 @@ class GovTalk
                     'http://www.w3.org/2001/XMLSchema-instance',
                     $xsiSchemaLocation
                 );
-                $package->writeElement('EnvelopeVersion', '2.0');
+                $package->writeElement('EnvelopeVersion', $this->envelopeVersion);
 
                 // Header...
                 $package->startElement('Header');
