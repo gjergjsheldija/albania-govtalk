@@ -1168,6 +1168,8 @@ class GovTalk
         if ($this->fullRequestString) {
             $this->fullResponseString = $this->fullResponseObject = null;
 
+//            echo($this->fullRequestString);
+
             // Log the outgoing message
             if ($this->messageLogLocation !== null) {
                 $ds = date('YmdHis');
@@ -1187,6 +1189,8 @@ class GovTalk
             )->send();
 
             $gatewayResponse = (string)$httpResponse->getBody();
+
+//            echo($gatewayResponse);
 
 //    Remove old usage of cURL - rather use via Guzzle as this is mockable
 //            if (function_exists('curl_init')) {
@@ -1224,6 +1228,7 @@ class GovTalk
                 }
 
                 $this->fullResponseString = $gatewayResponse;
+
                 $validXMLResponse = false;
                 if ($this->messageTransformation == 'XML') {
                     if (isset($this->additionalXsiSchemaLocation) && ($this->schemaValidation == true)) {
@@ -1370,13 +1375,17 @@ class GovTalk
 
                 // Authentication...
                 $package->startElement('IDAuthentication');
-                $package->writeElement('SenderID', $this->govTalkSenderId);
+                if($this->messageAuthType == 'clear') {
+                    $package->writeElement('SenderID', md5($this->govTalkSenderId));
+                } else {
+                    $package->writeElement('SenderID', $this->govTalkSenderId);
+                }
                 $package->startElement('Authentication');
                 switch ($this->messageAuthType) {
                     case 'alternative':
                         if ($authenticationArray = $this->generateAlternativeAuthentication($this->transactionId)) {
                             $package->writeElement('Method', $authenticationArray['method']);
-                            $package->writeElement('Role', 'principal');
+//                            $package->writeElement('Role', 'principal');
                             $package->writeElement('Value', $authenticationArray['token']);
                         } else {
                             return false;
@@ -1385,7 +1394,7 @@ class GovTalk
                     case 'clear':
                         $package->writeElement('Method', 'clear');
                         $package->writeElement('Role', 'principal');
-                        $package->writeElement('Value', $this->govTalkPassword);
+                        $package->writeElement('Value', md5($this->govTalkPassword));
                         break;
                     case 'MD5':
                         $package->writeElement('Method', 'MD5');
