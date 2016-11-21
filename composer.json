@@ -1,5 +1,5 @@
 {
-    "name": "justinbusschau/php-govtalk",
+    "name": "ignited/php-govtalk",
     "type": "library",
     "description": "A library for applications which interface with the UK Government Gateway",
     "homepage": "https://github.com/justinbusschau/php-govtalk",
