@@ -6,11 +6,11 @@
  * use with the more specific interfaces provided by various government
  * departments. Generates valid GovTalk envelopes for agreed version 2.0.
  *
- * @author Jonathon Wardman
+ * @author    Jonathon Wardman
  * @copyright 2009 - 2011, Fubra Limited
- * @licence http://www.gnu.org/licenses/gpl-3.0.txt GNU General Public License
+ * @licence   http://www.gnu.org/licenses/gpl-3.0.txt GNU General Public License
  *
- * @author Justin Busschau
+ * @author    Justin Busschau
  * @copyright 2013 - 2014, Justin Busschau
  * Refactored as PSR-2 for inclusion in justinbusschau/php-govtalk package.
  */
@@ -216,7 +216,7 @@ class GovTalk
      *   function => The name of the calling function. (Optional.)
      *
      * @since 0.4
-     * @var array
+     * @var   array
      */
     protected $errorArray = array();
 
@@ -241,11 +241,11 @@ class GovTalk
     /**
      * Instance constructor.
      *
-     * @param string $govTalkServer GovTalk server URL.
-     * @param string $govTalkSenderId GovTalk sender ID.
-     * @param string $govTalkPassword GovTalk password.
-     * @param ClientInterface $httpClient A Guzzle client for making API calls
-     * @param string $messageLogLocation Message log location (default null = no logging)
+     * @param string          $govTalkServer      GovTalk server URL.
+     * @param string          $govTalkSenderId    GovTalk sender ID.
+     * @param string          $govTalkPassword    GovTalk password.
+     * @param ClientInterface $httpClient         A Guzzle client for making API calls
+     * @param string          $messageLogLocation Message log location (default null = no logging)
      */
     public function __construct(
         $govTalkServer,
@@ -270,14 +270,16 @@ class GovTalk
     /**
      * Adds a new error to the end of the error array.
      *
-     * @since 0.4
-     * @see $errorArray
-     * @param string $errorCode An error code identifying this error being logged.
-     *     While not globally unique, care should be taken to make this useful.
-     * @param string $errorMessage An error message in plain text. This might be
+     * @since  0.4
+     * @see    $errorArray
+     * @param  string $errorCode    An error code identifying this error being logged.
+     *                             While not globally unique, care should be taken to
+     *                             make this useful.
+     * @param  string $errorMessage An error message in plain text. This might be
      *     displayed to the user by applications, so should be something pretty descriptive. (Optional.)
-     * @param string $function The function which generated this error. While this is optional,
-     *     and might not be very helpful (depending on the error), it's easy to add with __FUNCTION__. (Optional.)
+     * @param  string $function     The function which generated this error. While this is optional,
+     *                             and might not be very helpful (depending on the error), it's
+     *                             easy to add with __FUNCTION__. (Optional.)
      * @return boolean This function always returns true.
      */
     protected function logError($errorCode, $errorMessage = null, $function = null)
@@ -295,8 +297,8 @@ class GovTalk
      * Returns the number of errors which have been logged in the error array
      * since this instance was initialised, or the error array was last reset.
      *
-     * @since 0.4
-     * @see logError(), clearErrors(), getErrors()
+     * @since  0.4
+     * @see    logError(), clearErrors(), getErrors()
      * @return int The number of errors since the error array was last reset.
      */
     public function errorCount()
@@ -307,8 +309,8 @@ class GovTalk
     /**
      * Returns the full error array.
      *
-     * @since 0.4
-     * @see getLastError(), $errorArray
+     * @since  0.4
+     * @see    getLastError(), $errorArray
      * @return array The complete error array.
      */
     public function getErrors()
@@ -319,8 +321,8 @@ class GovTalk
     /**
      * Returns the last error pushed onto the error array.
      *
-     * @since 0.4
-     * @see getErrors(), $errorArray
+     * @since  0.4
+     * @see    getErrors(), $errorArray
      * @return array The last element pushed onto the error array.
      */
     public function getLastError()
@@ -331,8 +333,8 @@ class GovTalk
     /**
      * Clears all errors out of the error array.
      *
-     * @since 0.4
-     * @see $errorArray
+     * @since  0.4
+     * @see    $errorArray
      * @return boolean This function always returns true.
      */
     public function clearErrors()
@@ -558,8 +560,8 @@ class GovTalk
      * XML data will be validated against it.  This can be disabled by passing
      * false as the second argument when setting the schema.
      *
-     * @param string $schemaLocation URL location of additional xsd.
-     * @param boolean $validate True to turn validation on, false to turn it off.
+     * @param  string  $schemaLocation URL location of additional xsd.
+     * @param  boolean $validate       True to turn validation on, false to turn it off.
      * @return boolean True if the URL is valid and set, false if it's invalid (and therefore not set).
      */
     public function setSchemaLocation($schemaLocation, $validate = null)
@@ -579,7 +581,7 @@ class GovTalk
      * Switch off (or on) schema validation of outgoing and incoming XML data
      * against the additional XML schema.
      *
-     * @param boolean $validationFlag True to turn validation on, false to turn it off.
+     * @param  boolean $validationFlag True to turn validation on, false to turn it off.
      * @return boolean True if the validation is set, false if setting the validation failed.
      */
     public function setSchemaValidation($validate)
@@ -596,7 +598,7 @@ class GovTalk
      * Sets the test flag.  A flag value of true tells the Gateway this message
      * is a test, false (default) tells it this is a live message.
      *
-     * @param boolean $testFlag The value to set the test flag to.
+     * @param  boolean $testFlag The value to set the test flag to.
      * @return boolean True if the flag is set successfully, false otherwise.
      */
     public function setTestFlag($testFlag)
@@ -632,8 +634,8 @@ class GovTalk
      * message body against the schema prior to setting it. If no schema is
      * supplied no checks will be made at this stage.
      *
-     * @param mixed $messageBody The XML body of the GovTalk message.
-     * @param string $xmlSchema The URL of an XML schema to check the XML body against.
+     * @param  mixed  $messageBody The XML body of the GovTalk message.
+     * @param  string $xmlSchema   The URL of an XML schema to check the XML body against.
      * @return boolean True if the body is valid and set, false if it's invalid (and therefore not set).
      */
     public function setMessageBody($messageBody, $xmlSchema = null)
@@ -667,7 +669,7 @@ class GovTalk
     /**
      * Sets the message Class for use in MessageDetails header.
      *
-     * @param string $messageClass The class to set.
+     * @param  string $messageClass The class to set.
      * @return boolean True if the Class is valid and set, false if it's invalid (and therefore not set).
      */
     public function setMessageClass($messageClass)
@@ -686,7 +688,7 @@ class GovTalk
      * Qualifier may be one of 'request', 'acknowledgement', 'response', 'poll'
      * or 'error'. Any other values will not be set and will return false.
      *
-     * @param string $messageQualifier The qualifier to set.
+     * @param  string $messageQualifier The qualifier to set.
      * @return boolean True if the Qualifier is valid and set, false if it's invalid (and therefore not set).
      */
     public function setMessageQualifier($messageQualifier)
@@ -712,7 +714,7 @@ class GovTalk
      * is designed to be extended by department-specific extensions to validate
      * the possible options for message function, although can be used as-is.
      *
-     * @param string $messageFunction The function to set.
+     * @param  string $messageFunction The function to set.
      * @return boolean True if the Function is valid and set, false if it's invalid (and therefore not set).
      */
     public function setMessageFunction($messageFunction)
@@ -724,9 +726,9 @@ class GovTalk
     /**
      * Sets the message CorrelationID for use in MessageDetails header.
      *
-     * @param string $messageCorrelationId The correlation ID to set.
+     * @param  string $messageCorrelationId The correlation ID to set.
      * @return boolean True if the CorrelationID is valid and set, false if it's invalid (and therefore not set).
-     * @see function getResponseCorrelationId
+     * @see    function getResponseCorrelationId
      */
     public function setMessageCorrelationId($messageCorrelationId)
     {
@@ -757,9 +759,9 @@ class GovTalk
      * parse HTML or text documents. You are advised against changing this value
      * from the default.
      *
-     * @param string $messageCorrelationId The correlation ID to set.
+     * @param  string $messageCorrelationId The correlation ID to set.
      * @return boolean True if the CorrelationID is valid and set, false if it's invalid (and therefore not set).
-     * @see function getResponseCorrelationId
+     * @see    function getResponseCorrelationId
      */
     public function setMessageTransformation($transformation)
     {
@@ -784,7 +786,7 @@ class GovTalk
      * validation used when setting an email address here is that specified by
      * the GovTalk 2.0 envelope specifcation and is somewhat limited.
      *
-     * @param string $senderEmailAddress The email address to set.
+     * @param  string $senderEmailAddress The email address to set.
      * @return boolean True if the EmailAddress is valid and set, false if it's invalid (and therefore not set).
      */
     public function setSenderEmailAddress($senderEmailAddress)
@@ -812,7 +814,7 @@ class GovTalk
      * type must be one of 'alternative', 'clear', 'MD5' or 'W3Csigned'. Other
      * values will not be set and will return false.
      *
-     * @param string $messageAuthType The type of authentication to set.
+     * @param  string $messageAuthType The type of authentication to set.
      * @return boolean True if the authentication type is valid and set, false if it's invalid (and therefore not set).
      */
     public function setMessageAuthentication($messageAuthType)
@@ -859,13 +861,14 @@ class GovTalk
      * This is to identify the library to the Gateway and to assist in tracking
      * down issues caused by the library itself.
      *
-     * @param string $uri The URI of the owner of the process being added to the route.
-     * @param string $softwareName The name of the software generating this route entry.
-     * @param string $softwareVersion The version number of the software generating this route entry.
-     * @param array $id An array of IDs (themselves array of 'type' and 'value') to add as array elements.
-     * @param string $timestamp Representing the time this route processed the message (xsd:dateTime format).
-     * @param boolean $force If true the route already exists check is not carried out
-     *     and the target is added regardless of duplicates. (Defaults to false.)
+     * @param  string  $uri             The URI of the owner of the process being added to the route.
+     * @param  string  $softwareName    The name of the software generating this route entry.
+     * @param  string  $softwareVersion The version number of the software generating this route entry.
+     * @param  array   $id              An array of IDs (themselves array of 'type' and 'value') to add as array elements.
+     * @param  string  $timestamp       Representing the time this route processed the message (xsd:dateTime format).
+     * @param  boolean $force           If true the route already exists check is not carried out
+     *                                 and the target is added regardless of duplicates.
+     *                                 (Defaults to false.)
      * @return boolean True if the route is valid and added, false if it's not valid (and therefore not added).
      */
     public function addChannelRoute(
@@ -899,8 +902,8 @@ class GovTalk
             if ($force === false) {
                 $matchedChannel = false;
                 foreach ($this->messageChannelRouting as $channelRoute) {
-                    if (($channelRoute['product'] == $newRoute['product']) &&
-                        ($channelRoute['version'] == $newRoute['version'])
+                    if (($channelRoute['product'] == $newRoute['product'])
+                        && ($channelRoute['version'] == $newRoute['version'])
                     ) {
                         $matchedChannel = true;
                         break;
@@ -926,8 +929,8 @@ class GovTalk
      * Add a key-value pair to the set of keys to be sent with the message as
      * part of the GovTalkDetails element.
      *
-     * @param string $keyType The key type (type attribute).
-     * @param string $keyValue The key value.
+     * @param  string $keyType  The key type (type attribute).
+     * @param  string $keyValue The key value.
      * @return boolean True if the key is valid and added, false if it's not valid (and therefore not added).
      */
     public function addMessageKey($keyType, $keyValue)
@@ -953,8 +956,8 @@ class GovTalk
      * key value will be deleted (but again all keys which meeting these
      * criterion will be deleted).
      *
-     * @param string $keyType The key type (type attribute) to be deleted.
-     * @param string $keyValue The key value to be deleted.
+     * @param  string $keyType  The key type (type attribute) to be deleted.
+     * @param  string $keyValue The key value to be deleted.
      * @return integer The number of keys deleted.
      */
     public function deleteMessageKey($keyType, $keyValue = null)
@@ -992,16 +995,16 @@ class GovTalk
      * Add an organisation to the TargetDetails section of the GovTalkDetail
      * element.
      *
-     * @param string $targetOrganisation The organisation to be added.
-     * @param boolean $force If true the target already exists check is not carried out and the
-     *     target is added regardless of duplicates. (Defaults to false.)
+     * @param  string  $targetOrganisation The organisation to be added.
+     * @param  boolean $force              If true the target already exists check is not carried out and the
+     *                                    target is added regardless of duplicates. (Defaults to false.)
      * @return boolean True if the key is valid and added, false if it's not valid (and therefore not added).
      */
     public function addTargetOrganisation($targetOrganisation, $force = false)
     {
         if (($targetOrganisation != '') && (strlen($targetOrganisation) < 65)) {
-            if (($force === false) &&
-                in_array($targetOrganisation, $this->messageTargetDetails)
+            if (($force === false)
+                && in_array($targetOrganisation, $this->messageTargetDetails)
             ) {
                 return true;
             } else {
@@ -1020,7 +1023,7 @@ class GovTalk
      * If more than one organisation matches the given organisation name all are
      * removed.
      *
-     * @param string $targetOrganisation The organisation to be deleted.
+     * @param  string $targetOrganisation The organisation to be deleted.
      * @return integer The number of organisations deleted.
      */
     public function deleteTargetOrganisation($targetOrganisation)
@@ -1058,9 +1061,9 @@ class GovTalk
      * stored correlation ID and class, but this behaviour can be over-ridden by
      * providing both correlation ID and class to the method.
      *
-     * @param string $govTalkServer The GovTalk server to send the delete request to. May be skipped with a null value.
-     * @param string $correlationId The correlation ID to be deleted.
-     * @param string $messageClass
+     * @param  string $govTalkServer The GovTalk server to send the delete request to. May be skipped with a null value.
+     * @param  string $correlationId The correlation ID to be deleted.
+     * @param  string $messageClass
      *     The class used when the request which generated the correlation ID was sent to the gateway.
      * @return boolean True if message was successfully deleted from the gateway, false otherwise.
      */
@@ -1155,7 +1158,7 @@ class GovTalk
      * the response methods to discover more informationa about the data recieved
      * in the Gateway reply.
      *
-     * @param mixed cRequestString If not null this will be used as the message payload
+     * @param  mixed cRequestString If not null this will be used as the message payload
      * @return boolean True if the message was successfully submitted to the Gateway and a response was received.
      */
     public function sendMessage($cRequestString = null)
@@ -1168,7 +1171,7 @@ class GovTalk
         if ($this->fullRequestString) {
             $this->fullResponseString = $this->fullResponseObject = null;
 
-//            echo($this->fullRequestString);
+            //            echo($this->fullRequestString);
 
             // Log the outgoing message
             if ($this->messageLogLocation !== null) {
@@ -1190,39 +1193,38 @@ class GovTalk
 
             $gatewayResponse = (string)$httpResponse->getBody();
 
-//            echo($gatewayResponse);
+            //            echo($gatewayResponse);
 
-//    Remove old usage of cURL - rather use via Guzzle as this is mockable
-//            if (function_exists('curl_init')) {
-//                $curlHandle = curl_init($this->govTalkServer);
-//                curl_setopt($curlHandle, CURLOPT_HTTPHEADER, array('Content-Type: text/xml'));
-//                curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
-//                curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, false);
-//                curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $this->fullRequestString);
-//                $gatewayResponse = curl_exec($curlHandle);
-//                curl_close($curlHandle);
-//            } else {
-//                $streamOptions = array(
-//                    'http' => array(
-//                        'method' => 'POST',
-//                        'header' => 'Content-Type: text/xml',
-//                        'content' => $this->fullRequestString
-//                    )
-//                );
-//                if ($fileHandle = @fopen($this->govTalkServer, 'r', false, stream_context_create($streamOptions))) {
-//                    $gatewayResponse = stream_get_contents($fileHandle);
-//                } else {
-//                    return false;
-//                }
-//            }
+            //    Remove old usage of cURL - rather use via Guzzle as this is mockable
+            //            if (function_exists('curl_init')) {
+            //                $curlHandle = curl_init($this->govTalkServer);
+            //                curl_setopt($curlHandle, CURLOPT_HTTPHEADER, array('Content-Type: text/xml'));
+            //                curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+            //                curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, false);
+            //                curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $this->fullRequestString);
+            //                $gatewayResponse = curl_exec($curlHandle);
+            //                curl_close($curlHandle);
+            //            } else {
+            //                $streamOptions = array(
+            //                    'http' => array(
+            //                        'method' => 'POST',
+            //                        'header' => 'Content-Type: text/xml',
+            //                        'content' => $this->fullRequestString
+            //                    )
+            //                );
+            //                if ($fileHandle = @fopen($this->govTalkServer, 'r', false, stream_context_create($streamOptions))) {
+            //                    $gatewayResponse = stream_get_contents($fileHandle);
+            //                } else {
+            //                    return false;
+            //                }
+            //            }
 
             if ($gatewayResponse !== false) {
-
                 // Log the incoming message
                 if ($this->messageLogLocation !== null) {
                     $ds = date('YmdHis');
                     $f = fopen("{$this->messageLogLocation}/{$ds}-{$this->transactionId}-response.xml", 'w');
-//                    fprintf($f, $gatewayResponse);
+                    //                    fprintf($f, $gatewayResponse);
                     fprintf($f, $httpResponse);
                     fclose($f);
                 }
@@ -1270,7 +1272,7 @@ class GovTalk
      * Authentication->Method, 'token' => the token to use in IDAuthentication->
      * Authentication->Value, or false on failure.
      *
-     * @param string $transactionId Transaction ID to use generating the token.
+     * @param  string $transactionId Transaction ID to use generating the token.
      * @return mixed The authentication array, or false on failure.
      */
     protected function generateAlternativeAuthentication($transactionId)
@@ -1287,7 +1289,7 @@ class GovTalk
      * the new digested package. If the package is not altered by the digest it
      * must return the passed package unaltered.
      *
-     * @param string $package The package to digest.
+     * @param  string $package The package to digest.
      * @return string The new (or unaltered) package after application of the digest.
      */
     protected function packageDigest($package)
@@ -1304,17 +1306,15 @@ class GovTalk
     protected function packageGovTalkEnvelope()
     {
         // Firstly check we have everything we need to build the envelope...
-        if (isset($this->messageClass) and
-            isset($this->messageQualifier) and
-            isset($this->govTalkSenderId) and
-            isset($this->govTalkPassword) and
-            isset($this->messageAuthType)
+        if (isset($this->messageClass)
+            and isset($this->messageQualifier)
+            and isset($this->govTalkSenderId)
+            and isset($this->govTalkPassword)
+            and isset($this->messageAuthType)
         ) {
-
             // Generate the transaction ID...
             $this->generateTransactionId();
             if (isset($this->messageBody)) {
-
                 // Create the XML document (in memory)...
                 $package = new XMLWriter();
                 $package->openMemory();
@@ -1324,9 +1324,9 @@ class GovTalk
                 $package->startElement('GovTalkMessage');
                 $xsiSchemaName = 'http://www.govtalk.gov.uk/CM/envelope';
 
-//                if ($this->additionalXsiSchemaLocation !== null) {
+                //                if ($this->additionalXsiSchemaLocation !== null) {
                     $xsiSchemaLocation = $this->additionalXsiSchemaLocation;
-//                }
+                //                }
 
                 $package->writeAttribute('xmlns', $xsiSchemaName);
                 $package->writeAttributeNS(
@@ -1368,7 +1368,7 @@ class GovTalk
                 );
                 */
 
-                $package->endElement(); # MessageDetails
+                $package->endElement(); // MessageDetails
 
                 // Sender details...
                 $package->startElement('SenderDetails');
@@ -1385,7 +1385,7 @@ class GovTalk
                     case 'alternative':
                         if ($authenticationArray = $this->generateAlternativeAuthentication($this->transactionId)) {
                             $package->writeElement('Method', $authenticationArray['method']);
-//                            $package->writeElement('Role', 'principal');
+                            //                            $package->writeElement('Role', 'principal');
                             $package->writeElement('Value', $authenticationArray['token']);
                         } else {
                             return false;
@@ -1401,16 +1401,16 @@ class GovTalk
                         $package->writeElement('Value', base64_encode(md5(strtolower($this->govTalkPassword), true)));
                         break;
                 }
-                $package->endElement(); # Authentication
+                $package->endElement(); // Authentication
 
-                $package->endElement(); # IDAuthentication
+                $package->endElement(); // IDAuthentication
                 if ($this->senderEmailAddress !== null) {
                     $package->writeElement('EmailAddress', $this->senderEmailAddress);
                 }
 
-                $package->endElement(); # SenderDetails
+                $package->endElement(); // SenderDetails
 
-                $package->endElement(); # Header
+                $package->endElement(); // Header
 
                 // GovTalk details...
                 $package->startElement('GovTalkDetails');
@@ -1422,9 +1422,9 @@ class GovTalk
                         $package->startElement('Key');
                         $package->writeAttribute('Type', $keyPair['type']);
                         $package->text($keyPair['value']);
-                        $package->endElement(); # Key
+                        $package->endElement(); // Key
                     }
-                    $package->endElement(); # Keys
+                    $package->endElement(); // Keys
                 }
 
                 // Target details...
@@ -1433,7 +1433,7 @@ class GovTalk
                     foreach ($this->messageTargetDetails as $targetOrganisation) {
                         $package->writeElement('Organisation', $targetOrganisation);
                     }
-                    $package->endElement(); # TargetDetails
+                    $package->endElement(); // TargetDetails
                 }
 
                 // Channel routing...
@@ -1449,21 +1449,21 @@ class GovTalk
                     if (array_key_exists('version', $channelRoute)) {
                         $package->writeElement('Version', $channelRoute['version']);
                     }
-                    $package->endElement(); # Channel
+                    $package->endElement(); // Channel
 
                     if (array_key_exists('id', $channelRoute) && is_array($channelRoute['id'])) {
                         foreach ($channelRoute['id'] as $channelRouteId) {
                             $package->startElement('ID');
                             $package->writeAttribute('type', $channelRouteId['type']);
                             $package->text($channelRouteId['value']);
-                            $package->endElement(); # ID
+                            $package->endElement(); // ID
                         }
                     }
 
                     $package->writeElement('Timestamp', $channelRoute['timestamp']);
-                    $package->endElement(); # ChannelRouting
+                    $package->endElement(); // ChannelRouting
                 }
-                $package->endElement(); # GovTalkDetails
+                $package->endElement(); // GovTalkDetails
 
                 // Body...
                 $package->startElement('Body');
@@ -1472,9 +1472,9 @@ class GovTalk
                 } elseif (is_a($this->messageBody, 'XMLWriter')) {
                     $package->writeRaw("\n".trim($this->messageBody->outputMemory())."\n");
                 }
-                $package->endElement(); # Body
+                $package->endElement(); // Body
 
-                $package->endElement(); # GovTalkMessage
+                $package->endElement(); // GovTalkMessage
 
                 // Flush the buffer, run any extension-specific digests, validate the schema
                 // and return the XML...
@@ -1507,8 +1507,8 @@ class GovTalk
      * you would expect).  Where an array has numeric indices each element takes
      * its name from the parent array.
      *
-     * @param mixed $informationArray The information to be turned into an XMLWriter object.
-     * @param string $parentElement The name of the parent element, if the $informationArray is numerically indexed.
+     * @param  mixed  $informationArray The information to be turned into an XMLWriter object.
+     * @param  string $parentElement    The name of the parent element, if the $informationArray is numerically indexed.
      * @return XMLWriter An XMLWriter object representing the given array in XML.
      */
     protected function xmlPackageArray($informationArray, $parentElement = null)
@@ -1577,4 +1577,3 @@ class GovTalk
         );
     }
 }
-
