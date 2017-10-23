@@ -11,11 +11,11 @@
  * Refactored for php &.x for inclusion in gjergjsheldija/albania-govtalk package.
  */
 
-namespace AKSHI;
+namespace GovTalk\AKSHI;
 
-use GovTalk\GovTalk;
+use GovTalk;
 
-class DPGJC extends GovTalk
+class DPGJC extends GovTalk\GovTalk
 {
 
 	/**
