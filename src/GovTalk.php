@@ -1241,7 +1241,7 @@ class GovTalk
                     if (isset($this->additionalXsiSchemaLocation) && ($this->schemaValidation == true)) {
                         $xsiSchemaHeaders = @get_headers($this->additionalXsiSchemaLocation);
                         if ($xsiSchemaHeaders[0] != 'HTTP/1.1 404 Not Found') {
-                            $validate = new DOMDocument();
+                            $validate = new \DOMDocument();
                             $validate->loadXML($this->fullResponseString);
                             if ($validate->schemaValidate($this->additionalXsiSchemaLocation)) {
                                 $validXMLResponse = true;
