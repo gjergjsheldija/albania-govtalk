@@ -2,10 +2,10 @@
 
 **A library for applications which interface with the Albanian Government Gateway**
 
-[![Build Status](https://travis-ci.org/gjergjsheldija/albania-govtalk.png?branch=master)](https://travis-ci.org/gjergjsheldija/albania-govtalk)
-[![Latest Stable Version](https://poser.pugx.org/justinbusschau/php-govtalk/version.png)](https://packagist.org/packages/gjergjsheldija/albania-govtalk)
-[![Total Downloads](https://poser.pugx.org/justinbusschau/php-govtalk/d/total.png)](https://packagist.org/packages/gjergjsheldija/albania-govtalk)
-[![License](https://poser.pugx.org/justinbusschau/php-govtalk/license.svg)](https://packagist.org/packages/gjergjsheldija/albania-govtalk)
+[![Build Status](https://travis-ci.org/gjergjsheldija/albania-govtalk.svg?branch=master)](https://travis-ci.org/gjergjsheldija/albania-govtalk)
+[![Latest Stable Version](https://poser.pugx.org/gjergjsheldija/albania-govtalk/version.png)](https://packagist.org/packages/gjergjsheldija/albania-govtalk)
+[![Total Downloads](https://poser.pugx.org/gjergjsheldija/albania-govtalk/d/total.png)](https://packagist.org/packages/gjergjsheldija/albania-govtalk)
+[![License](https://poser.pugx.org/gjergjsheldija/albania-govtalk/license.svg)](https://packagist.org/packages/gjergjsheldija/albania-govtalk)
 
 The GovTalk Message Envelope is a standard developed by the United Kingdom government as a means of encapsulating
 a range of government XML services in a single standard data format.
