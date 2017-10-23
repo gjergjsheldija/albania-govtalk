@@ -1,4 +1,4 @@
-# PHP GovTalk
+# Albania GovTalk
 
 **A library for applications which interface with the Albanian Government Gateway**
 
