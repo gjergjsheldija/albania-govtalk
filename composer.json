@@ -6,23 +6,23 @@
     "license": "GPLv3",
     "authors": [
         {
-            "name": "Gjergj Sheldija",
-            "homepage": "http://www.sheldija.net/"
-        },        
-        {
             "name": "Jonathon Wardman - Fubra Limited",
             "homepage": "http://www.fubra.com/"
         },
         {
             "name": "Justin Busschau",
             "email": "justin.busschau@gmail.com"
+        },
+        {
+            "name": "Gjergj Sheldija",
+            "homepage": "http://www.sheldija.net/"
         }
     ],
     "autoload": {
         "psr-4": { "GovTalk\\" : "src/" }
     },
     "require": {
-        "php": ">=5.3.2",
+        "php": ">=7.1",
         "guzzle/guzzle": "~3.1"
     },
     "require-dev": {
