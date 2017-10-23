@@ -179,6 +179,7 @@ class GovTalkTest extends TestCase
         $this->setMockHttpResponse('VatReturnAuthFailure.txt');
 
         $this->gtService = $this->setUpService();
+        $this->gtService->setSchemaValidation(false);
         $this->assertTrue($this->gtService->setTestFlag(true));
         $this->assertTrue($this->gtService->setMessageAuthentication('clear'));
         $this->assertTrue($this->gtService->setSenderEmailAddress('joe@bloggs.com'));
@@ -222,6 +223,7 @@ class GovTalkTest extends TestCase
         $this->setMockHttpResponse( 'GiftAidResponseAck.txt' );
         $preBuiltMessage = file_get_contents( __DIR__ . '/Messages/GiftAidRequest.txt' );
 
+		$this->gtService->setSchemaValidation(false);
         $this->gtService->sendMessage( $preBuiltMessage );
         return $preBuiltMessage;
     }
