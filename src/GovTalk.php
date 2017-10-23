@@ -1,7 +1,7 @@
 <?php
 /**
  * GovTalk API Client -- Builds, validates, sends, receives and validates
- * GovTalk messages for use with the UK government's GovTalk messaging system
+ * GovTalk messages for use with the Albanian government's GovTalk messaging system
  * (http://www.govtalk.gov.uk/). A generic wrapper designed to be extended for
  * use with the more specific interfaces provided by various government
  * departments. Generates valid GovTalk envelopes for agreed version 2.0.
@@ -13,6 +13,12 @@
  * @author Justin Busschau
  * @copyright 2013 - 2014, Justin Busschau
  * Refactored as PSR-2 for inclusion in justinbusschau/php-govtalk package.
+ *
+ * @author Gjergj Sheldija
+ * @copyright 2017 - , Gjergj Sheldija
+ * @licence http://www.gnu.org/licenses/gpl-3.0.txt GNU General Public License
+ * Refactored as PHP 7.x for inclusion in gjergjsheldija/albania-govtalk package.*
+ *
  */
 
 namespace GovTalk;
@@ -1168,8 +1174,6 @@ class GovTalk
         if ($this->fullRequestString) {
             $this->fullResponseString = $this->fullResponseObject = null;
 
-//            echo($this->fullRequestString);
-
             // Log the outgoing message
             if ($this->messageLogLocation !== null) {
                 $ds = date('YmdHis');
@@ -1376,7 +1380,7 @@ class GovTalk
                 // Authentication...
                 $package->startElement('IDAuthentication');
                 if($this->messageAuthType == 'clear') {
-                    $package->writeElement('SenderID', md5($this->govTalkSenderId));
+                    $package->writeElement('SenderID', ($this->govTalkSenderId));
                 } else {
                     $package->writeElement('SenderID', $this->govTalkSenderId);
                 }
@@ -1394,7 +1398,7 @@ class GovTalk
                     case 'clear':
                         $package->writeElement('Method', 'clear');
                         $package->writeElement('Role', 'principal');
-                        $package->writeElement('Value', md5($this->govTalkPassword));
+                        $package->writeElement('Value', $this->govTalkPassword);
                         break;
                     case 'MD5':
                         $package->writeElement('Method', 'MD5');
@@ -1438,12 +1442,7 @@ class GovTalk
 
                 // Channel routing...
                 $channelRouteArray = $this->messageChannelRouting;
-                $channelRouteArray[] = array(
-                    'uri' => 'https://github.com/justinbusschau/php-govtalk/',
-                    'product' => 'php-govtalk',
-                    'version' => '0.1',
-                    'timestamp' => date('c')
-                );
+
                 foreach ($channelRouteArray as $channelRoute) {
                     $package->startElement('ChannelRouting');
                     $package->startElement('Channel');
@@ -1486,7 +1485,7 @@ class GovTalk
                 $xmlPackage = $this->packageDigest($package->flush());
                 $validXMLRequest = true;
                 if (isset($this->additionalXsiSchemaLocation) && ($this->schemaValidation == true)) {
-                    $validation = new DOMDocument();
+                    $validation = new \DOMDocument();
                     $validation->loadXML($xmlPackage);
                     if (!$validation->schemaValidate($this->additionalXsiSchemaLocation)) {
                         $validXMLRequest = false;
