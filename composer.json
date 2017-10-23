@@ -1,10 +1,14 @@
 {
-    "name": "ignited/php-govtalk",
+    "name": "gjergjsheldija/albania-govtalk",
     "type": "library",
-    "description": "A library for applications which interface with the UK Government Gateway",
-    "homepage": "https://github.com/justinbusschau/php-govtalk",
+    "description": "A library for applications which interface with the Albanian Government Gateway",
+    "homepage": "https://github.com/gjergjsheldija/albania-govtalk/",
     "license": "GPLv3",
     "authors": [
+        {
+            "name": "Gjergj Sheldija",
+            "homepage": "http://www.sheldija.net/"
+        },        
         {
             "name": "Jonathon Wardman - Fubra Limited",
             "homepage": "http://www.fubra.com/"
