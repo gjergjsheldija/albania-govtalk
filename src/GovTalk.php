@@ -1,7 +1,7 @@
 <?php
 /**
  * GovTalk API Client -- Builds, validates, sends, receives and validates
- * GovTalk messages for use with the Albanian government's GovTalk messaging system
+ * GovTalk messages for use with the UK government's GovTalk messaging system
  * (http://www.govtalk.gov.uk/). A generic wrapper designed to be extended for
  * use with the more specific interfaces provided by various government
  * departments. Generates valid GovTalk envelopes for agreed version 2.0.
@@ -13,12 +13,6 @@
  * @author Justin Busschau
  * @copyright 2013 - 2014, Justin Busschau
  * Refactored as PSR-2 for inclusion in justinbusschau/php-govtalk package.
- *
- * @author Gjergj Sheldija
- * @copyright 2017 - , Gjergj Sheldija
- * @licence http://www.gnu.org/licenses/gpl-3.0.txt GNU General Public License
- * Refactored as PHP 7.x for inclusion in gjergjsheldija/albania-govtalk package.*
- *
  */
 
 namespace GovTalk;
@@ -1174,6 +1168,8 @@ class GovTalk
         if ($this->fullRequestString) {
             $this->fullResponseString = $this->fullResponseObject = null;
 
+//            echo($this->fullRequestString);
+
             // Log the outgoing message
             if ($this->messageLogLocation !== null) {
                 $ds = date('YmdHis');
@@ -1379,8 +1375,8 @@ class GovTalk
 
                 // Authentication...
                 $package->startElement('IDAuthentication');
-                if($this->messageAuthType == 'clear') {
-                    $package->writeElement('SenderID', ($this->govTalkSenderId));
+                if ($this->messageAuthType == 'clear') {
+                    $package->writeElement('SenderID', $this->govTalkSenderId);
                 } else {
                     $package->writeElement('SenderID', $this->govTalkSenderId);
                 }
@@ -1581,3 +1577,4 @@ class GovTalk
         );
     }
 }
+
