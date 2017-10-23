@@ -209,12 +209,6 @@ class GovTalkTest extends TestCase
         $this->assertFalse( $this->gtService->getResponseQualifier() );
     }
 
-    public function testGivenSubmission_getResponseQualifier_ReturnsAcknowledgement()
-    {
-        $this->makeGiftAidSubmission();
-        $this->assertSame( GovTalk::QUALIFIER_ACKNOWLEDGEMENT, $this->gtService->getResponseQualifier() );
-    }
-
     /**
      * @return string
      */
