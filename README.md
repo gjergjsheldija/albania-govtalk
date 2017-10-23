@@ -1,6 +1,6 @@
 # PHP GovTalk
 
-**A library for applications which interface with the UK Government Gateway**
+**A library for applications which interface with the Albanian Government Gateway**
 
 [![Build Status](https://travis-ci.org/JustinBusschau/php-govtalk.png?branch=master)](https://travis-ci.org/JustinBusschau/php-govtalk)
 [![Latest Stable Version](https://poser.pugx.org/justinbusschau/php-govtalk/version.png)](https://packagist.org/packages/justinbusschau/php-govtalk)
@@ -10,9 +10,9 @@
 The GovTalk Message Envelope is a standard developed by the United Kingdom government as a means of encapsulating
 a range of government XML services in a single standard data format.
 
-This project was originally forked from [Fubra Limited](https://github.com/fubralimited/php-govtalk). Only the GovTalk
+This project was originally forked from [Ignited](https://github.com/ignited/php-govtalk). GovTalk and the DPGJ
 class is preserved in this library. This library can be used whenever you need to build something that interfaces with any
-of the services that use the Government Gateway (e.g. Companies House, HMRC, etc.).
+of the services that use the Government Gateway.
 
 ## Installation
 
@@ -36,8 +36,4 @@ $ php composer.phar update
 ## Basic usage
 
 This library can be extended and used with any one of the gateways that use the GovTalk Message Envelope and the
-Document Submission Protocol. The following libraries currently use / extend GovTalk:
-
-Library | Composer Package | Maintainer
---- | --- | ---
-[HMRC Gif Aid](https://github.com/justinbusschau/hmrc-gift-aid) | justinbusschau/hmrc-gift-aid | [Justin Busschau](https://github.com/justinbusschau)
+Document Submission Protocol.
