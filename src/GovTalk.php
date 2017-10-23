@@ -864,7 +864,8 @@ class GovTalk
      * @param  string  $uri             The URI of the owner of the process being added to the route.
      * @param  string  $softwareName    The name of the software generating this route entry.
      * @param  string  $softwareVersion The version number of the software generating this route entry.
-     * @param  array   $id              An array of IDs (themselves array of 'type' and 'value') to add as array elements.
+     * @param  array   $id              An array of IDs (themselves array of 'type' and 'value') to add as array
+     *                                  elements.
      * @param  string  $timestamp       Representing the time this route processed the message (xsd:dateTime format).
      * @param  boolean $force           If true the route already exists check is not carried out
      *                                 and the target is added regardless of duplicates.
@@ -1212,7 +1213,11 @@ class GovTalk
             //                        'content' => $this->fullRequestString
             //                    )
             //                );
-            //                if ($fileHandle = @fopen($this->govTalkServer, 'r', false, stream_context_create($streamOptions))) {
+            //                if ($fileHandle = @fopen(
+            //                                          $this->govTalkServer,
+            //                                          'r',
+            //                                          false,
+            //                                          stream_context_create($streamOptions))) {
             //                    $gatewayResponse = stream_get_contents($fileHandle);
             //                } else {
             //                    return false;
